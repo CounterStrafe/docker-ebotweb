@@ -39,6 +39,7 @@ ebotweb:
     - /opt/docker/ebot/demos:/opt/ebot/demos
     - /opt/docker/ebot/logs:/opt/ebotlogs
   environment:
+    EBOT_PROTO: 'http://'
     EBOT_IP: 'xxx.xxx.xxx.xxx'
     EBOT_PORT: '12360'
     EBOT_ADMIN_USER: 'admin'
