@@ -2,7 +2,7 @@
 
 EBOT_WEB_HOME='/var/www/html'
 
-EBOT_PROTO="${EBOT_IP:-http://}"
+EBOT_PROTO="${EBOT_PROTO:-http://}"
 EBOT_IP="${EBOT_IP:-}"
 EBOT_PORT="${EBOT_PORT:-12360}"
 
