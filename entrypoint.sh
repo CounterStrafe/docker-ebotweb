@@ -1,24 +1,29 @@
 #!/bin/bash
 
-EBOT_WEB_HOME='/var/www/html'
-
-EBOT_PROTO="${EBOT_PROTO:-http://}"
-EBOT_IP="${EBOT_IP:-}"
-EBOT_PORT="${EBOT_PORT:-12360}"
-
 MYSQL_HOST="${MYSQL_HOST:-mysql}"
 MYSQL_PORT="${MYSQL_PORT:-3306}"
 MYSQL_USER="${MYSQL_USER:-ebotv3}"
 MYSQL_PASS="${MYSQL_PASS:-ebotv3}"
 MYSQL_DB="${MYSQL_DB:-ebotv3}"
 
-DEMO_DOWNLOAD="${DEMO_DOWNLOAD:-true}"
-DEMO_FOLDER="${DEMO_FOLDER:-/opt/ebot/demos}"
-LOG_FOLDER="${LOG_FOLDER:-/opt/ebot/logs}"
-
 EBOT_ADMIN_USER="${EBOT_ADMIN_USER:-admin}"
 EBOT_ADMIN_PASS="${EBOT_ADMIN_PASS:-password}"
 EBOT_ADMIN_MAIL="${EBOT_ADMIN_MAIL:-admin@ebot}"
+
+EBOT_WEB_HOME='/var/www/html'
+
+LOG_FOLDER="${LOG_FOLDER:-/opt/ebot/logs}"
+DEMO_FOLDER="${DEMO_FOLDER:-/opt/ebot/demos}"
+
+DEFAULT_MAX_ROUND="${DEFAULT_MAX_ROUND:-15}"
+DEFAULT_RULES="${DEFAULT_RULES:-rules}"
+DEFAULT_OVERTIME_MAX_ROUND="${DEFAULT_OVERTIME_MAX_ROUND:-3}"
+DEFAULT_OVERTIME_STARTMONEY="${DEFAULT_OVERTIME_STARTMONEY:-16000}"
+DEMO_DOWNLOAD="${DEMO_DOWNLOAD:-true}"
+
+EBOT_PROTO="${EBOT_PROTO:-http://}"
+EBOT_IP="${EBOT_IP:-}"
+EBOT_PORT="${EBOT_PORT:-12360}"
 
 TOORNAMENT_SECRET="${TOORNAMENT_SECRET:-}"
 TOORNAMENT_API_KEY="${TOORNAMENT_API_KEY:-}"
@@ -36,8 +41,11 @@ then
     # manage config
     sed -i "s|log_match:.*|log_match: ${LOG_FOLDER}/log_match|" $EBOT_WEB_HOME/config/app_user.yml
     sed -i "s|log_match_admin:.*|log_match_admin: ${LOG_FOLDER}/log_match_admin|" $EBOT_WEB_HOME/config/app_user.yml
-    sed -i "s|demo_path:.*|demo_path: ${DEMO_FOLDER}|" $EBOT_WEB_HOME/config/app_user.yml
+    sed -i "s|default_max_round:.*|default_max_round: ${DEFAULT_MAX_ROUND}|" $EBOT_WEB_HOME/config/app_user.yml
     sed -i "s|default_rules:.*|default_rules: ${DEFAULT_RULES}|" $EBOT_WEB_HOME/config/app_user.yml
+    sed -i "s|default_overtime_max_round:.*|default_overtime_max_round: ${DEFAULT_OVERTIME_MAX_ROUND}|" $EBOT_WEB_HOME/config/app_user.yml
+    sed -i "s|default_overtime_startmoney:.*|default_overtime_startmoney: ${DEFAULT_OVERTIME_STARTMONEY}|" $EBOT_WEB_HOME/config/app_user.yml
+    sed -i "s|demo_path:.*|demo_path: ${DEMO_FOLDER}|" $EBOT_WEB_HOME/config/app_user.yml
     sed -i "s|ebot_proto:.*|ebot_proto: ${EBOT_PROTO}|" $EBOT_WEB_HOME/config/app_user.yml
     sed -i "s|ebot_ip:.*|ebot_ip: ${EBOT_IP}|" $EBOT_WEB_HOME/config/app_user.yml
     sed -i "s|ebot_port:.*|ebot_port: ${EBOT_PORT}|" $EBOT_WEB_HOME/config/app_user.yml
